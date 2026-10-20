@@ -3,14 +3,8 @@ import { percentOf, sum } from '../common/money';
 import { ProductsService } from '../products/products.service';
 import { COUPONS, normalizeCouponCode } from './coupons';
 import { QuoteCartDto } from './dto/quote-cart.dto';
+import { DEFAULT_PRICING_OPTIONS, PricingOptions } from './pricing.config';
 import { CartQuote, QuoteDiscount, QuoteLine } from './quote.model';
-
-interface PricingOptions {
-  currency: 'EUR';
-  shippingCents: number;
-  freeShippingThresholdCents: number;
-  coupons: string[];
-}
 
 @Injectable()
 export class CartService {
@@ -56,17 +50,19 @@ export class CartService {
   }
 
   private buildPricingOptions(dto: QuoteCartDto): PricingOptions {
-    const coupons: string[] = [];
+    const options: PricingOptions = { ...DEFAULT_PRICING_OPTIONS };
 
     if (dto.couponCode) {
       const code = normalizeCouponCode(dto.couponCode);
       if (!COUPONS[code]) {
         throw new BadRequestException(`Coupon ${code} non valido`);
       }
-      coupons.push(code);
+      if (!options.coupons.includes(code)) {
+        options.coupons.push(code);
+      }
     }
 
-    return { currency: 'EUR', shippingCents: 590, freeShippingThresholdCents: 5000, coupons };
+    return options;
   }
 
   private buildLines(dto: QuoteCartDto): QuoteLine[] {
