@@ -12,6 +12,7 @@ I dati dei prodotti sono in memoria (`apps/api/src/products/data/products.data.t
 ## Prima del colloquio (≈10 minuti)
 
 Requisiti: **Node.js 20+** e npm, git e il tuo editor o strumento AI preferito.
+In alternativa puoi aprire il repo in **GitHub Codespaces** (Code → Codespaces): l'ambiente è già configurato.
 
 ```bash
 git clone <URL-DEL-REPO> shop && cd shop

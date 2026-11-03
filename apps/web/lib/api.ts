@@ -1,6 +1,7 @@
 import type { CartItem, CartQuote, Category, Paginated, Product } from './types';
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
+// Server side we call the API directly; in the browser we go through the Next.js proxy (/api, see next.config.mjs).
+const API_URL = typeof window === 'undefined' ? (process.env.API_URL ?? 'http://localhost:3001') : '/api';
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {

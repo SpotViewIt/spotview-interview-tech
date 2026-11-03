@@ -1,5 +1,9 @@
+const API_URL = process.env.API_URL ?? 'http://localhost:3001';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: { remotePatterns: [{ protocol: 'https', hostname: 'picsum.photos' }] },
+  async rewrites() {
+    return [{ source: '/api/:path*', destination: `${API_URL}/:path*` }];
+  },
 };
 export default nextConfig;
