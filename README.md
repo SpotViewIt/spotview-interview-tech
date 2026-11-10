@@ -15,7 +15,7 @@ Requisiti: **Node.js 20+** e npm, git e il tuo editor o strumento AI preferito.
 In alternativa puoi aprire il repo in **GitHub Codespaces** (Code → Codespaces): l'ambiente è già configurato.
 
 ```bash
-git clone <URL-DEL-REPO> shop && cd shop
+git clone https://github.com/SpotViewIt/spotview-interview-tech.git && cd spotview-interview-tech
 npm install
 npm test            # devono passare tutti i test
 npm run dev         # avvia API (3001) e Web (3000) insieme
